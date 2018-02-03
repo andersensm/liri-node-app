@@ -1,14 +1,12 @@
 require("dotenv").config();
 
-console.log(process.env.TWITTER_CONSUMER_KEY)
+var keys = require("./keys.js")
+var Spotify = require('node-spotify-api')
+var Twitter = require('twitter')
 
-console.log(process.env.TWITTER_CONSUMER_SECRET)
+var spotify = new Spotify(keys.spotify);
+var client = new Twitter(keys.twitter);
 
 
-* `my-tweets`
-
-* `spotify-this-song`
-
-* `movie-this`
-
-* `do-what-it-says`
+console.log(spotify)
+console.log(client)
