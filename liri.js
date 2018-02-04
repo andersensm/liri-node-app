@@ -91,7 +91,6 @@ switch(arguments[2]) {
           if (ready === true) {
               var request = require("request");
               request("http://www.omdbapi.com/?t=" + fullMovieName + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
-                // If the request is successful (i.e. if the response status code is 200)
                 if (!error && response.statusCode === 200) {
                   console.log("-------------------------------------------------------------------");
                   console.log("Movie Title: " + JSON.parse(body).Title);
@@ -134,8 +133,6 @@ switch(arguments[2]) {
         if (arguments[2] === 'do-what-it-says') {
           var fs = require("fs");
 
-          // Running the readFile module that's inside of fs.
-          // Stores the read information into the variable "data"
           fs.readFile("random.txt", "utf8", function(err, data) {
             if (err) {
               return console.log(err);
