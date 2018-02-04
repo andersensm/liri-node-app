@@ -4,8 +4,6 @@ var fullSong = ""
 
 var fullMovieName= ""
 
-var doWhatItSays = []
-
 var ready = false
 
 console.log(arguments)
@@ -92,11 +90,18 @@ switch(arguments[2]) {
               var request = require("request");
               request("http://www.omdbapi.com/?t=" + fullMovieName + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
                 if (!error && response.statusCode === 200) {
+
+                  var check = JSON.parse(body).Ratings
+
                   console.log("-------------------------------------------------------------------");
                   console.log("Movie Title: " + JSON.parse(body).Title);
                   console.log("Release Date: " + JSON.parse(body).Year);
                   console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
-                  console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);
+                  for (var i = 0; i < check.length; i++){
+                    if (check[i].Source === 'Rotten Tomatoes'){
+                      console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[i].Value);
+                    }
+                  }
                   console.log("Country Produced: " + JSON.parse(body).Country);
                   console.log("Languages: " + JSON.parse(body).Language);
                   console.log("Plot: " + JSON.parse(body).Plot);
@@ -114,11 +119,18 @@ switch(arguments[2]) {
               request("http://www.omdbapi.com/?t=mr.nobody&y=&plot=short&apikey=trilogy", function(error, response, body) {
                 // If the request is successful (i.e. if the response status code is 200)
                 if (!error && response.statusCode === 200) {
+                  
+                  var check = JSON.parse(body).Ratings
+
                   console.log("-------------------------------------------------------------------");
                   console.log("Movie Title: " + JSON.parse(body).Title);
                   console.log("Release Date: " + JSON.parse(body).Year);
                   console.log("IMDB Rating: " + JSON.parse(body).imdbRating);
-                  console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[1].Value);
+                  for (var i = 0; i < check.length; i++){
+                    if (check[i].Source === 'Rotten Tomatoes'){
+                      console.log("Rotten Tomatoes Rating: " + JSON.parse(body).Ratings[i].Value);
+                    }
+                  }
                   console.log("Country Produced: " + JSON.parse(body).Country);
                   console.log("Languages: " + JSON.parse(body).Language);
                   console.log("Plot: " + JSON.parse(body).Plot);
